@@ -1,0 +1,37 @@
+<body class="menubar-hoverable header-fixed ">
+	
+	<!-- BEGIN LOGIN SECTION -->
+	<section class="section-account">
+		<div class="img-backdrop" style="background-image: url('<?php echo IMG?>/wago_backdrop.jpg')"></div>
+		<div class="spacer"></div>
+		<div class="card contain-sm style-transparent">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-sm-6">
+						<btn-raised/>
+						<span class="text-lg text-bold text-primary">Recuperação de Senha</span>
+
+						<br/><br/>
+						<form class="form floating-label" action="" accept-charset="utf-8" method="post">
+							<div class="form-group">
+								<input type="text" class="form-control" id="usuario" name="usuario">
+								<label for="Usuario">Usuario</label>
+								<p class="help-block">Informe seu usuário que deseja recuperar a senha</p>
+							</div>
+							<br/>
+							<div class="row">
+								<div class="col-xs-6 text-right">
+                                     <input name="submit" type="submit" value="Enviar link de recuperação" class="btn btn-primary btn-raised">
+								</div><!--end .col -->
+							</div><!--end .row -->
+						</form>
+					</div><!--end .col -->
+					<div class="col-sm-5 col-sm-offset-1 text-center">
+						<br><br><br><br>
+						<a class="btn btn-block btn-raised btn-primary" href="login">Voltar para pagina de login</a> 
+						<br><br>
+ 					</div><!--end .col -->
+				</div><!--end .row -->
+			</div><!--end .card-body -->
+		</div><!--end .card -->
+	</section>

@@ -1,0 +1,423 @@
+<body class="menubar-hoverable header-fixed" id="quotation">
+
+    <?php
+
+include ('/../bars/'.$view_skin->roledesc.'/topbar.phtml');
+
+
+    ?>
+		<!-- BEGIN BASE-->
+		<div id="base">
+
+			<!-- BEGIN OFFCANVAS LEFT -->
+			<div class="offcanvas">
+			</div><!--end .offcanvas-->
+			<!-- END OFFCANVAS LEFT -->
+
+
+			<!-- BEGIN CONTENT-->
+			<div id="content">
+				<section class="style-default-bright">					
+					<div class="section-header">
+						<ol class="breadcrumb">
+							<li><a href="../../html/.html">home</a></li>
+							<li class="active">Tabela Cotações</li>
+						</ol>
+					</div><!--end .section-header -->
+					<div class="section-body">
+				<section>
+					<div class="section-body contain-lg">						
+						<!-- BEGIN VERTICAL FORM FLOATING LABELS -->
+							<div class="col-md-12">
+								<button type="button" id="quotationModalButton" class="btn btn-block ink-reaction btn-primary">Adicionar Cotação</button>							
+							</div><!--end .col -->
+
+
+
+					<!-- MODAL INSERT START -->
+						<div id="quotationModal" class="row modal fade">
+							<div class="col-md-8 modalQuotation">
+								<form class="form quotationInsert" action="<?php echo BASE; ?>quotation/salvar" method="post">
+									<div class="card">
+										<div class="card-head style-primary"s>
+											<header>Adicionar Nova Cotação</header>
+										</div>
+										<div class="card-body floating-label">
+											<div class="row">
+											<!-- QUOTATION NUMBER START -->
+												<div class="col-md-3">
+													<div class="form-group">
+														<input type="text" class="form-control input-sm quotationNumber" id="quotationNumber" name="quotationNumber">
+														<label for="quotationNumber">N. Cotação</label>
+													</div>
+												</div>
+											<!-- QUOTATION NUMBER END -->
+											<!-- TERMINAL NUMBER START -->												
+												<div class="col-md-3">
+														<input type="text" class="form-control input-sm" id="quotationCustomerID" name="quotationCustomerID">										
+												</div>
+											<!-- TERMINAL NUMBER END -->												
+											</div><!--end .row -->
+											<div class="row">
+											<!-- QUOTATION VALUE START -->
+												<div class="col-sm-3">
+													<div class="form-group">
+														<input  type="text" class="form-control input-sm valueMask " id="quotationValue" name="quotationValue" >
+														<label for="quotationValue">Valor</label>
+													</div>
+												</div>
+											<!-- QUOTATION VALUE END -->
+											<!-- QUOTATION FINAL VALUE START -->
+												<div class="col-sm-3">
+													<div class="form-group">
+														<input  type="text" class="form-control input-sm valueMask " id="quotationFinalValue" name="quotationFinalValue" >
+														<label for="quotationFinalValue">Valor Fechado</label>
+													</div>
+												</div>
+											<!-- QUOTATION FINAL VALUE END -->
+											</div><!--end .row -->
+											<div class="row">
+											<!-- QUOTATION PRIORITY START -->
+												<div class="col-sm-2">
+													<div class="form-group floating-label">
+														<select  id="quotationPriority" name="quotationPriority" class="form-control input-sm " >
+															<option value="">&nbsp;</option>
+															<option value="A">A</option>
+															<option value="B">B</option>
+															<option value="C">C</option>
+															<option value="D">D</option>
+														</select>		
+														<label for="quotationPriority">Prioridade</label>
+													</div>										
+												</div>											
+											<!-- QUOTATION PRIORITY END -->
+											<!-- QUOTATION STATE START -->
+												<div class="col-sm-3">
+													<div class="form-group">
+														<select  id="quotationState" name="quotationState" class="form-control input-sm " >
+															<option value="Aberta">Aberta</option>
+															<option value="Fechada">Fechada</option>
+															<option value="Consulta">Consulta</option>
+															<option value="Projeto">Projeto</option>
+															<option value="Perdido">Perdido</option>
+															<option value="Encerrada">Encerrada</option>
+															<option value="Cancelada">Cancelada</option>
+														</select>
+														<label for="quotationState">Status</label>
+													</div>
+												</div>
+											<!-- QUOTATION STATE END -->
+											<!-- QUOTATION COMMUWAY START -->
+												<div class="col-sm-2">
+													<div class="form-group floating-label">
+														<select  id="quotationCommuWay" name="quotationCommuWay" class="form-control input-sm " >
+															<option value="">&nbsp;</option>
+															<option value="Vendedor">Vendedor</option>
+															<option value="Cliente">Cliente</option> 
+														</select>
+														<label for="quotationCommuWay">Comun.</label>
+													</div>										
+												</div>											
+										    <!-- QUOTATION COMMUWAY END -->			
+										    <!-- QUOTATION DEALER USER ID START -->
+												<div class="col-sm-2">
+													<div class="form-group floating-label">
+														<select  id="quotationDealerUserID" name="quotationDealerUserID" class="form-control input-sm " >
+															<option value="">&nbsp;</option>
+															 <?php
+							                                $out = '';
+							                                  for ($i = 0, $lgt = count($view_reportTo); $i < $lgt; $i++)
+							                                  {
+							                                    $out .= '<option value="';
+							                                    $out .= ($view_reportTo[$i]->userreportid);
+							                                    $out .= '">' ;
+							                                    $out .= ($view_reportTo[$i]->username);
+							                                    $out .='</option>';
+							                                  }
+							                                 echo $out;?>  
+															</select>
+														<label for="quotationDealerUserID">Vendedor</label>
+													</div>										
+												</div>											
+										    <!-- QUOTATION DEALER USER ID END -->	
+										    <!-- QUOTATION RECEIVED CONF START -->	
+											    <div class="col-sm-2">
+													<div class="form-group">												
+														<div class="col-sm-2">
+															<label class="checkbox-inline checkbox-styled checkbox-primary toggleOpacity">
+																<input id="quotationReceivedConf" name="quotationReceivedConf" type="checkbox" value="1" ><span>Conf.</span>
+															</label>
+														</div>
+													</div><!--end .col -->
+												</div><!--end .form-group -->
+										 	<!-- QUOTATION RECEIVED CONF END -->	
+										 	</div><!--end .row -->
+										 	<div class="row">												
+											<!-- QUOTATION CREATION DATE START -->
+												<div class="col-sm-4">
+													<div class="form-group">
+														<div class="input-group date date-picker">
+															<div class="input-group-content">
+																<input  id="quotationCreationDate" name="quotationCreationDate" type="text" class="form-control input-sm ">
+																<label>Data Proposta</label>
+															</div>
+															<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+														</div>
+													</div>
+												</div>
+											<!-- QUOTATION CREATION DATE END -->									
+										   </div><!--end .row -->
+										</div><!--end .card-body -->										
+										<div class="card-actionbar">
+											<div class="card-actionbar-row">
+												<button type="submit" id="submitInsert" class="btn btn-flat btn-primary ink-reaction">Adicionar Cotação</button>
+											</div>
+										</div><!--end .card-actionbar -->
+									</div><!--end .card -->
+								</form>
+							</div><!--end .col -->
+						</div><!--end .row -->
+ 					<!-- MODAL INSERT END-->
+
+ 					<!-- MODAL EDIT START -->
+						<div id="quotationEditModal" class="row modal fade">
+							<div class="col-md-8 modalQuotation">
+								<form class="form quotationEdit" action="<?php echo BASE; ?>quotation/editar" method="post">
+									<div class="card">
+										<div class="card-head style-primary"s>
+											<header>Editar Cotação</header>
+										</div>
+										<div class="card-body">
+											<div class="row">
+											<!-- QUOTATION ID START -->
+											<input  type="hidden" class="form-control input-sm quotationNumber" id="quotationIDEdit" name="quotationID">
+											<!-- QUOTATION ID START -->
+
+											<!-- QUOTATION NUMBER START -->
+												<div class="col-md-3">
+													<div class="form-group">
+														<input type="text" class="form-control input-sm quotationNumber" id="quotationNumberEdit" name="quotationNumber">
+														<label for="quotationNumber">N. Cotação</label>
+													</div>
+												</div>
+											<!-- QUOTATION NUMBER END -->
+											<!-- TERMINAL NUMBER START -->												
+												<div class="col-md-3">
+														<input type="text" class="form-control input-sm" id="quotationCustomerIDEdit" name="quotationCustomerID">										
+												</div>
+											<!-- TERMINAL NUMBER END -->												
+											</div><!--end .row -->
+											<div class="row">
+											<!-- QUOTATION VALUE START -->
+												<div class="col-sm-3">
+													<div class="form-group">
+														<input  type="text" class="form-control input-sm valueMask " id="quotationValueEdit" name="quotationValue" >
+														<label for="quotationValue">Valor</label>
+													</div>
+												</div>
+											<!-- QUOTATION VALUE END -->
+											<!-- QUOTATION FINAL VALUE START -->
+												<div class="col-sm-3">
+													<div class="form-group">
+														<input  type="text" class="form-control input-sm valueMask " id="quotationFinalValueEdit" name="quotationFinalValue" >
+														<label for="quotationFinalValue">Valor Fechado</label>
+													</div>
+												</div>
+											<!-- QUOTATION FINAL VALUE END -->
+											</div><!--end .row -->
+											<div class="row">
+											<!-- QUOTATION PRIORITY START -->
+												<div class="col-sm-2">
+													<div class="form-group">
+														<select  id="quotationPriorityEdit" name="quotationPriority" class="form-control input-sm " >
+															<option value="">&nbsp;</option>
+															<option value="A">A</option>
+															<option value="B">B</option>
+															<option value="C">C</option>
+															<option value="D">D</option>
+														</select>		
+														<label for="quotationPriority">Prioridade</label>
+													</div>										
+												</div>											
+											<!-- QUOTATION PRIORITY END -->
+											<!-- QUOTATION STATE START -->
+												<div class="col-sm-3">
+													<div class="form-group">
+														<select  id="quotationStateEdit" name="quotationState" class="form-control input-sm " >
+															<option value="Aberta">Aberta</option>
+															<option value="Fechada">Fechada</option>
+															<option value="Consulta">Consulta</option>
+															<option value="Projeto">Projeto</option>
+															<option value="Perdido">Perdido</option>
+															<option value="Encerrada">Encerrada</option>
+															<option value="Cancelada">Cancelada</option>
+														</select>
+														<label for="quotationState">Status</label>
+													</div>
+												</div>
+											<!-- QUOTATION STATE END -->
+											<!-- QUOTATION COMMUWAY START -->
+												<div class="col-sm-2">
+													<div class="form-group">
+														<select  id="quotationCommuWayEdit" name="quotationCommuWay" class="form-control input-sm " >
+															<option value="">&nbsp;</option>
+															<option value="Vendedor">Vendedor</option>
+															<option value="Cliente">Cliente</option> 
+														</select>
+														<label for="quotationCommuWay">Comun.</label>
+													</div>										
+												</div>											
+										    <!-- QUOTATION COMMUWAY END -->			
+										    <!-- QUOTATION DEALER USER ID START -->
+												<div class="col-sm-2">
+													<div class="form-group">
+														<select  id="quotationDealerUserIDEdit" name="quotationDealerUserID" class="form-control input-sm " >
+															<option value="">&nbsp;</option>
+															 <?php
+							                                $out = '';
+							                                  for ($i = 0, $lgt = count($view_reportTo); $i < $lgt; $i++)
+							                                  {
+							                                    $out .= '<option value="';
+							                                    $out .= ($view_reportTo[$i]->userreportid);
+							                                    $out .= '">' ;
+							                                    $out .= ($view_reportTo[$i]->username);
+							                                    $out .='</option>';
+							                                  }
+							                                 echo $out;?>  
+															</select>
+														<label for="quotationDealerUserID">Vendedor</label>
+													</div>										
+												</div>											
+										    <!-- QUOTATION DEALER USER ID END -->	
+										    <!-- QUOTATION RECEIVED CONF START -->	
+											    <div class="col-sm-2">
+													<div class="form-group">												
+														<div class="col-sm-2">
+															<label class="checkbox-inline checkbox-styled checkbox-primary toggleOpacity">
+																<input id="quotationReceivedConfEdit" name="quotationReceivedConf" type="checkbox" value="1" ><span>Conf.</span>
+															</label>
+														</div>
+													</div><!--end .col -->
+												</div><!--end .form-group -->
+										 	<!-- QUOTATION RECEIVED CONF END -->	
+										 	</div><!--end .row -->
+										 	<div class="row">												
+											<!-- QUOTATION CREATION DATE START -->
+												<div class="col-sm-4">
+													<div class="form-group">
+														<div class="input-group date date-picker">
+															<div class="input-group-content">
+																<input  id="quotationCreationDateEdit" name="quotationCreationDate" type="text" class="form-control input-sm ">
+																<label>Data Proposta</label>
+															</div>
+															<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+														</div>
+													</div>
+												</div>
+											<!-- QUOTATION CREATION DATE END -->									
+										   </div><!--end .row -->
+										</div><!--end .card-body -->										
+										<div class="card-actionbar">
+											<div class="card-actionbar-row">
+												<button type="submit" id="submitEdit" class="btn btn-flat btn-primary ink-reaction">Salvar Cotação</button>
+											</div>
+										</div><!--end .card-actionbar -->
+									</div><!--end .card -->
+								</form>
+							</div><!--end .col -->
+						</div><!--end .row -->
+ 					<!-- MODAL EDIT END-->
+
+
+ 					<!-- MODAL DELETE START -->
+						<div class="modal fade" id="quotationDelete" tabindex="-1" role="dialog" aria-labelledby="simpleModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div>
+										<div class="card-head style-primary"s>
+											<header>Confirmação</header>
+										</div>
+									</div>
+									<div class="modal-body">
+										<h4>Tem certeza que deseja excluir essa cotação?</h4>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary">Confirmar</button>
+										<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+									</div>
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal-dialog -->
+						</div><!-- /.modal -->
+ 					<!-- MODAL DELETE END-->
+
+ 					
+
+
+
+
+					</div>	
+
+				</section>
+					
+			
+				
+
+						<!-- BEGIN DATATABLE 2 -->
+						<div class="row">	
+
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">						
+								<div class="table-responsive">								
+									<table id="quotationTable" class="table order-column hover" data-swftools="<?php echo JS; ?>/libs/DataTables/extensions/TableTools/swf/copy_csv_xls_pdf.swf">
+										<thead>
+											<tr>
+												<th></th>
+												<th class="sort-numeric">N. Cotação</th>
+												<th class="sort-numeric">Valor</th>
+												<th class="sort-numeric">Valor Fechado</th>
+												<th>Status</th>
+												<th>Data Criação</th>	
+												<th>Confirmação</th>									
+												<th class="sort-alpha">Cliente</th>
+												<th class="sort-alpha">Vendedor</th>
+												<th class="sort-alpha">Contato</th>
+												<th></th>
+												<th></th>
+											</tr>
+										</thead>
+										<tfoot>
+										<tr>
+												<th>Total</th>
+												<th></th>
+												<th></th>
+												<th colspan="3"></th>	
+												<th> - </th>
+												<th> - </th>	
+												<th> - </th>
+												<th> - </th>	
+												<th></th>
+												<th></th>
+											</tr></tfoot>
+
+									</table>
+								</div><!--end .table-responsive -->
+							</div><!--end .col -->
+						</div><!--end .row -->
+						<!-- END DATATABLE 2 -->
+
+					</div><!--end .section-body -->
+				</section>
+
+
+
+
+        
+
+			</div><!--end #content-->
+			<!-- END CONTENT -->
+        <?php
+              include('/../bars/'.$view_skin->roledesc.'/sidebar.phtml');
+        ?>
+
+
+		</div><!--end #base-->
+		<!-- END BASE -->

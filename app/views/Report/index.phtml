@@ -1,0 +1,135 @@
+<body class="menubar-hoverable header-fixed" id="reports">
+
+    <?php
+
+include ('/../bars/'.$view_skin->roledesc.'/topbar.phtml');
+
+
+    ?>
+    <!-- BEGIN BASE-->
+    <div id="base">
+
+      <!-- BEGIN OFFCANVAS LEFT -->
+      <div class="offcanvas">
+      </div><!--end .offcanvas-->
+      <!-- END OFFCANVAS LEFT -->
+
+
+      <!-- BEGIN CONTENT-->
+      <div id="content">
+        <section class="style-default-bright">          
+          <div class="section-header">
+            <ol class="breadcrumb">
+              <li><a href="../../html/.html">home</a></li>
+              <li class="active">Relatórios</li>
+            </ol>
+          </div><!--end .section-header -->
+
+        <section>
+          <div class="section-body contain-lg">           
+
+            <!-- BEGIN HORIZONTAL FORM -->
+            <div class="row">
+              <div class="col-lg-12">
+                <h2 class="text-primary">Filtros relatórios</h2>
+              </div><!--end .col -->
+              <div class="col-lg-7">
+                <article class="margin-bottom-xxl">
+                  <p class="lead">
+                    Selecione os filtros e clique em gerar relatório para baixar a planilha.
+                  </p>                  
+                </article>
+              </div><!--end .col -->
+              <div class="col-lg-12">
+                <form class="form form-horizontal report-filter">
+                <div class="card">
+                  <div class="card-body">
+                    <form class="form">
+                      <div class="col-md-6">
+                        <div class="form-group margin-bottom-xxl">
+                          <div class="input-daterange input-group date-picker" id="demo-date-range">
+                            <div class="input-group-content">
+                              <input type="text" class="form-control" id="startDate" name="start" />
+                              <!-- <input type="hidden" id="start-date"> -->
+                              <label>Datas</label>
+                            </div>
+                            <span class="input-group-addon">até</span>
+                            <div class="input-group-content">
+                              <input type="text" class="form-control" id="endDate" name="end" />
+                              <!-- <input type="hidden" id="end-date"> -->
+                              <div class="form-control-line"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!--end .col -->
+
+                      <div class="col-md-12">
+
+                        <div class="form-group margin-bottom-xxl">
+                          <label class="col-sm-1 control-label">Tipos:</label>
+                          <div class="col-sm-9">
+                            <label class="checkbox-inline checkbox-styled checkbox-primary">
+                              <input type="checkbox" value="1" checked><span>Aberta</span>
+                            </label>
+                            <label class="checkbox-inline checkbox-styled checkbox-success">
+                              <input type="checkbox" value="0" checked><span>Fechada</span>
+                            </label>
+                            <label class="checkbox-inline checkbox-styled checkbox-warning">
+                              <input type="checkbox" value="option3" checked><span>Consulta</span>
+                            </label>
+                            <label class="checkbox-inline checkbox-styled checkbox-info">
+                              <input type="checkbox" value="option2" checked><span>Projeto</span>
+                            </label>
+                            <label class="checkbox-inline checkbox-styled checkbox-danger">
+                              <input type="checkbox" value="option3" checked><span>Perdido</span>
+                            </label>
+                             <label class="checkbox-inline checkbox-styled checkbox-danger">
+                              <input type="checkbox" value="option3" checked><span>Encerrada</span>
+                            </label>
+                             <label class="checkbox-inline checkbox-styled checkbox-danger">
+                              <input type="checkbox" value="option3" checked><span>Cancelada</span>
+                            </label>
+                          </div><!--end .col -->
+                        </div><!--end .form-group -->
+                    
+                        <div class="form-group margin-bottom-xxl">
+                          <div class="col-sm-1"></div>
+                          <div class="col-sm-4">Vendedores</div>
+                          <div class="col-sm-1"></div>
+                          <div class="col-sm-3">Selecionados</div>
+                          <div class="col-sm-9">
+                            <select id="salesPeople" multiple="multiple">
+                            <optgroup label="Alaskan/Hawaiian Time Zone">
+                              <option value="AK">Alaska</option>
+                              <option value="HI">Hawaii</option>
+                            </optgroup>                        
+                            </select>
+                          </div>
+                        </div>
+
+                      </div><!--end .col -->
+                  </div><!--end .card-body -->
+
+                  <div class="card-actionbar">
+                    <div class="card-actionbar-row">
+                      <button type="submit" class="btn btn-flat btn-primary ink-reaction">Gerar arquivo</button>
+                    </div>
+                  </div>
+                </div><!--end .card -->
+                </form>
+              </div><!--end .col -->
+            </div><!--end .row -->
+            <!-- END HORIZONTAL FORM -->
+
+          </div><!--end .section-body -->
+        </section>
+        </section>
+      </div><!--end #content-->
+      <!-- END CONTENT -->
+        <?php
+              include('/../bars/'.$view_skin->roledesc.'/sidebar.phtml');
+        ?>
+
+
+    </div><!--end #base-->
+    <!-- END BASE -->

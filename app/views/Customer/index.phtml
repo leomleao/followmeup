@@ -1,0 +1,495 @@
+<body class="menubar-hoverable header-fixed" id="costumer">
+
+    <?php
+
+include ('/../bars/'.$view_skin->roledesc.'/topbar.phtml');
+
+    ?>
+
+    <!-- BEGIN BASE-->
+    <div id="base">
+
+      <!-- BEGIN OFFCANVAS LEFT -->
+      <div class="offcanvas">
+      </div><!--end .offcanvas-->
+      <!-- END OFFCANVAS LEFT -->
+
+      <!-- BEGIN CONTENT-->
+      <div id="content">
+        <section>
+          <div class="section-header">
+            <ol class="breadcrumb">
+              <li class="active">Cadastro de Clientes</li>
+            </ol>
+          </div><?php echo (isset($this->alert) ? $this->alert : ''); ?>
+          <div class="section-body">
+            <div class="card">
+
+              <!-- BEGIN SEARCH HEADER -->
+              <div class="card-head style-primary">
+<!--                 <div class="tools pull-left">
+                  <form class="navbar-search" role="search">
+                    <div class="form-group">
+                        <input id="search" name="search" placeholder="Start typing here" type="text" data-list=".list-results">
+                    </div>
+                    <button type="submit" class="btn btn-icon-toggle ink-reaction"><i class="fa fa-search"></i></button>
+                  </form>
+                </div> -->
+                <div class="tools">
+                  <a class="btn btn-floating-action btn-default-light" id="addNewCustomer"><i class="fa fa-plus"></i></a>
+                </div>
+              </div><!--end .card-head -->
+              <!-- END SEARCH HEADER -->
+
+                <!-- MODAL START -->
+            <div id="addCustomer" class="row modal fade">
+              <!-- BEGIN ADD CONTACTS FORM -->
+              <div class="col-md-6 addCustomer">
+                <div class="card">
+                  <div class="card-head style-primary">
+                    <header>Adicionar novo Cliente</header>
+                  </div>
+                  <form class="form form-validate" role="form" action="<?php echo BASE?>customer/newCustomer" accept-charset="utf-8" method="post" novalidate="novalidate">
+                    <!-- BEGIN FORM TABS -->
+                    <div class="card-head style-primary">
+                      <ul class="nav nav-tabs tabs-text-contrast tabs-accent" data-toggle="tabs">
+                        <li class="active"><a href="#contact">Dados da Empresa</a></li>
+                        <li><a href="#endereço">Endereço</a></li>
+                      </ul>
+                    </div><!--end .card-head -->
+                    <!-- END FORM TABS -->
+                    <!-- BEGIN FORM TAB PANES -->
+                    <div class="card-body tab-content">
+                      <div class="tab-pane active" id="contact">
+                        <div class="row">
+                          <div class="col-md-8">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" id="customerCode" name="customerCode" required>
+                                  <label for="customerCode">Código do Cliente</label>
+                                  <p class="help-block"></p>
+                                </div>
+                              </div><!--end .col -->
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" id="customerName" name="customerName" required>
+                                  <label for="customerName">Nome da Empresa</label>
+                               </div>
+                              </div><!--end .col -->
+                            </div><!--end .row -->
+                            <div class="row">
+<!--                             <div class="col-md-4">
+                            <div class="form-group" id="cpfcnpjValidate">
+                              <input type="text" class="form-control" id="customerCNPJ" name="customerCNPJ">
+                              <label for="customerCNPJ">CNPJ/CPF</label>
+                              <span class="help-block red"><small></small></span>
+                            </div> --><!--end .form-group 
+                           </div> -->
+                            <div class="col-md-6">
+                             <div class="form-group" id="customertel">
+                              <input type="text" class="form-control customertel" id="customertel" name="customertel" required>
+                              <label for="customertel">Telefone</label>
+                              <span class="help-block red"><small></small></span>
+                              </div>
+                            </div><!--end .form-group -->
+                            <div class="col-md-6">
+                             <div class="form-group" id="customercel">
+                              <input type="text" class="form-control customercel" id="customercel" name="customercel">
+                              <label for="customercel">Celular</label>
+                              <span class="help-block red"><small></small></span>
+                              </div>
+                              </div>
+                            </div><!--end .form-group -->
+                            <div class="row">
+                              <div class="col-md-8">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" id="customerContactName" name="customerContactName" required>
+                                  <label for="customerContactName">Nome de Contato</label>
+                                </div>
+                              </div><!--end .col -->
+                              <!--Select States -->
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <select id="customerSalesManID" name="customerSalesManID" class="form-control" required>
+                                    <option value="">&nbsp;</option>
+                                     <?php
+                                        $out = '';
+                                          for ($i = 0, $lgt = count($view_sales); $i < $lgt; $i++)
+                                          {
+                                            $out .= '<option value="';
+                                            $out .= ($view_sales[$i]->userid);
+                                            $out .= '">' ;
+                                            $out .= ($view_sales[$i]->username);
+                                            $out .='</option>';
+                                          }
+                                         echo $out;?>  
+                                      </select>
+                                    <label for="customerSalesManID">Vendedor</label>
+                                  </div>      
+                              </div><!--end .col -->
+                            </div>
+                              <!--Select States -->
+                            <div class="row">
+                               <div class="col-md-8">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" id="customerEmail" name="customerEmail" required>
+                                  <label for="customerEmail">Email</label>
+                                </div>
+                              </div><!--end .col -->
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <select id="customerDiscountGroup" name="customerDiscountGroup" class="form-control" required>
+                                    <option value="">&nbsp;</option>
+                                     <?php
+                                        $out = '';
+                                          for ($i = 0, $lgt = count($view_discount); $i < $lgt; $i++)
+                                          {
+                                            $out .= '<option value="';
+                                            $out .= ($view_discount[$i]->discountgroupid);
+                                            $out .= '">' ;
+                                            $out .= ($view_discount[$i]->discountgroupname);
+                                            $out .='</option>';
+                                          }
+                                         echo $out;?>  
+                                      </select>
+                                    <label for="customerDiscountGroup">Segmento</label>
+                                </div>
+                              </div><!--end .col -->
+                            </div><!--end .row -->
+                          </div><!--end .col -->
+                        </div><!--end .row -->
+                      </div><!--end .tab-pane -->
+                      <div class="tab-pane" id="endereço">
+                        <ul class="list-unstyled" id="experienceList"></ul>
+                        <!-- CEP -->
+                              <div class="col-md-2">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" id="customerZipCode" name="customerZipCode" maxlength="9"
+                                  onblur="searchZipCode(this.value);" required>
+                                  <label for="customerZipCode">CEP</label>
+                                </div>
+                              </div>
+                        <!-- CEP -->
+                        <!-- Rua -->
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" id="customerStreet" name="customerStreet" required>
+                                  <label for="customerStreet">Rua</label>
+                                </div>
+                              </div>
+                        <!-- Rua -->
+                        <!-- Número -->
+                              <div class="col-md-2">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" id="customerStreetNumber" name="customerStreetNumber" required>
+                                  <label for="customerStreetNumber">Número</label>
+                                </div>
+                              </div>
+                        <!-- Número -->
+                        <!-- ESTADO -->
+                              <div class="col-md-2">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" id="customerState" name="customerState" required>
+                                  <label for="customerState">Estado</label>
+                                </div>
+                              </div>
+                        <!-- ESTADO -->
+                        <!-- Bairro -->
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" id="customerNeighborhood" name="customerNeighborhood" required>
+                                  <label for="customerNeighborhood">Bairro</label>
+                                </div>
+                              </div>
+                        <!-- Bairro -->
+                        <!-- Cidade -->
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" id="customerCity" name="customerCity" required>
+                                  <label for="customerCity">Cidade</label>
+                                </div>
+                              </div>
+                        <!-- Cidade -->
+                        <!-- IBGE -->
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" id="customerIBGE" name="customerIBGE" required>
+                                  <label for="customerIBGE">IBGE</label>
+                                </div>
+                              </div>
+                        <!-- IBGE -->
+                      </div><!--end .tab-pane -->
+
+                    </div><!--end .card-body.tab-content -->
+                    <!-- END FORM TAB PANES -->
+
+                    <!-- BEGIN FORM FOOTER -->
+                    <div class="card-actionbar">
+                      <div class="card-actionbar-row">
+                      <a class="btn btn-flat" data-dismiss="modal">CANCELAR</a>
+                      <input type="submit" name="submit" class="btn btn-flat btn-primary ink-reaction">
+                      </div><!--end .card-actionbar-row -->
+                    </div><!--end .card-actionbar -->
+                    <!-- END FORM FOOTER -->
+
+                  </form>
+                </div><!--end .card -->
+              </div><!--end .col -->
+              <!-- END ADD CONTACTS FORM -->
+            </div><!--end .row -->
+          <!-- MODAL END-->
+
+ 
+      <!-- jplist plugin initialize-->
+                  <div id="demo" class="box jplist">
+                      <!-- ios button: show/hide panel -->
+                      <div class="jplist-ios-button">
+                        <i class="fa fa-sort"></i>
+                        jPList Actions
+                      </div>
+                    <div class="jplist-group">
+              <div class="jplist-panel box panel-top">
+    <!-- jplist plugin end-->
+
+
+
+
+     <!-- BEGIN SEARCH RESULTS -->
+              <div class="card-body">
+                <div class="row">
+
+                  <!-- BEGIN SEARCH NAV -->
+                  <div class="col-sm-4 col-md-3 col-lg-2">
+                    <ul class="nav nav-pills nav-stacked">
+                      <li><small>CATEGORIAS</small></li>
+                                 <li>
+                                   <a
+                                     data-control-type="button-text-filter"
+                                     data-control-action="filter"
+                                     data-control-name="architecture-btn"
+                                     data-path=".block"
+                                     data-text="Revenda">
+                                        Revenda
+                                   </a>
+                                 </li>
+
+                                 <li>
+                                   <a
+                                     data-control-type="button-text-filter"
+                                     data-control-action="filter"
+                                     data-control-name="christmas-btn"
+                                     data-path=".block"
+                                     data-text="Cliente Final">
+                                        Cliente Final
+                                   </a>
+                                 </li>
+
+                                 <li>
+                                   <a
+                                     data-control-type="button-text-filter"
+                                     data-control-action="filter"
+                                     data-control-name="nature-btn"
+                                     data-path=".block"
+                                     data-text="representante">
+                                        Representante
+                                   </a>
+                                 </li>
+
+                                 <li>
+                                   <a
+                                     data-control-type="button-text-filter"
+                                     data-control-action="filter"
+                                     data-control-name="lifestyle-btn"
+                                     data-path=".block"
+                                     data-text="distribuidor">
+                                        Distribuidor
+                                   </a>
+                                 </li>
+
+                      <li class="hidden-xs"><small>ULTIMOS CLIENTES</small></li>
+                           <?php
+                                  count($view_data) < 5 ? $lgt = (count($view_data)) : $lgt = 5;
+                                        $out = '';
+                                          for ($i = 0; $i < $lgt; $i++)
+                                          {
+                                            $out .= '<li class="hidden-xs">';
+                                            $out .= '<a href="">';
+                                            $out .= '<span class="text-medium">';
+                                            $out .= ($view_data[$i]->customername);
+                                            $out .='</span>';
+                                            $out .='<br/>';
+                                            $out .='<span class="opacity-50">';
+                                            $out .='<span class="glyphicon glyphicon-envelope text-sm"></span>';
+                                            $out .= '<small> &nbsp;'.($view_data[$i]->customeremail).'</small>';
+                                            $out .='</span>';
+                                            $out .='</a>';
+                                          }
+                                         echo $out;?> 
+                      </li>
+
+                    </ul>
+                  </div><!--end .col -->
+                  <!-- END SEARCH NAV -->
+
+                  <div class="col-sm-8 col-md-9 col-lg-10">
+ 
+                      <!-- panel -->
+
+                    <!-- BEGIN SEARCH RESULTS LIST -->
+                    <div class="margin-bottom-xxl">
+                        <div class="row">
+            <!-- filter by title -->
+               <div class="tools pull-left">
+                  <form class="navbar-search" role="search">
+                        <div class="form-group">
+
+                            <!--[if lt IE 10]>
+                            <div class="jplist-label">Filter by Title:</div>
+                            <![endif]-->
+                        <input  
+                                data-path="#md-business" 
+                                type="text" 
+                                value="" 
+                                placeholder="filtrar empresa" 
+                                data-control-type="textbox" 
+                                data-control-name="customerContactName-filter" 
+                                data-control-action="filter"
+                                id="search" name="search"/>
+                        </div>
+                    <button type="submit" class="btn btnNew btn-icon-toggle ink-reaction"><i class="fa fa-search"></i></button>
+                    </form>
+              </div>
+                      <div class="btn-group btn-group-sm pull-right">
+           
+
+                        <span class=""></span> 
+                          <select
+                             class="btn btn-default-light dropdown-toggle"
+                             data-control-type="sort-select"
+                             data-control-name="sort"
+                             data-control-action="sort">
+                               <option data-path="default">Ordenar por</option>
+                               <option data-path="#name" data-order="asc" data-type="text">Cliente A-Z</option>
+                               <option data-path="#name" data-order="desc" data-type="text">Cliente Z-A</option>
+                               <option data-path=".md-business" data-order="asc" data-type="text">Empresa A-Z</option>
+                               <option data-path=".md-business" data-order="desc" data-type="text">Empresa Z-A</option>
+                               <option data-path=".date" data-order="asc" data-type="datetime">Mais Novo</option>
+                               <option data-path=".date" data-order="desc" data-type="datetime">Mais Antigo</option>
+                          </select>
+                      </div>
+                      </div>
+                    </div><!--end .margin-bottom-xxl -->
+
+                  <hr>
+                       <div 
+                           class="jplist-label" 
+                           data-type="Pagina {current} de {pages}" 
+                           data-control-type="pagination-info" 
+                           data-control-name="paging" 
+                           data-control-action="paging">
+                        </div>  
+
+                        <div 
+                           class="jplist-pagination" 
+                           data-control-type="pagination" 
+                           data-control-name="paging" 
+                           data-control-action="paging"
+                           data-items-per-page="20">
+                        </div>      
+
+                  <div>    
+                  </br>
+                  </br>
+                    <div class="list-results" id="contactContainer">
+                     <div class="col-xs-12 col-lg-6 hbox-xs" id="contactBox0">
+                          <div class="hbox-column width-2">
+                          <p class="circleInitials-name"></p>
+                          </div><!--end .hbox-column -->
+                          <div class="hbox-column v-top">
+                          <div class="clearfix">
+                            <div class="col-lg-12 margin-bottom-lg">
+                              <a class="text-lg text-medium cursive" href="" id="name"></a>
+                            </div>
+                          </div>
+                          <div class="clearfix opacity-75">
+                            <div class="col-md-12">
+                              <span class="md md-business"></span><p class="cursive" id="md-business"></p>
+                            </div>
+                            <div class="col-md-12">
+                              <span class="glyphicon glyphicon-envelope text-sm"></span><p class="cursive"></p>
+                            </div>
+                          </div>
+                          <div class="clearfix">
+                            <div class="col-lg-12">
+                              <span class="opacity-75">
+                              <span class="glyphicon glyphicon-map-marker text-sm"></span><p class="cursive"></p> 
+                              <span class="text-sm text-left block pull-right"></span>
+                            </div>
+                          </div>
+                          <div class="stick-top-right small-padding">
+                            <i class="fa fa-dot-circle-o fa-fw text-success" data-toggle="tooltip" data-placement="left" data-original-title="Cliente Novo"></i>
+                          </div>
+                          </div><!--end .hbox-column -->
+                          </div><!--end .hbox-xs -->
+                    </div><!--end .list-results -->
+                    </div>
+                  <div class="box jplist-no-results align-center">
+                    <p>Nenhum resultado encontrado</p>
+                  </div>
+            
+                    <!-- ios button: show/hide panel -->
+                    <div class="jplist-ios-button">
+                      <i class="fa fa-sort"></i>
+                      jPList Actions
+                    </div>
+            
+                      <!-- panel -->
+                      <div class="jplist-panel box panel-bottom">
+                        
+                        <div 
+                           class="jplist-label" 
+                           data-type="{start} - {end} de {all}"
+                           data-control-type="pagination-info" 
+                           data-control-name="paging" 
+                           data-control-action="paging">
+                        </div>
+                        
+                        <div 
+                           class="jplist-pagination" 
+                           data-control-type="pagination" 
+                           data-control-name="paging" 
+                           data-control-action="paging"
+                           data-items-per-page="20"
+                           data-control-animate-to-top="true">
+                        </div>
+                        </br>
+                        </br>
+                      </div>
+                  </div>
+
+                  </div><!--end .col -->
+                </div><!--end .row -->
+              </div><!--end .card-body -->
+              <!-- END SEARCH RESULTS -->
+
+            </div><!--end .card -->
+          </div><!--end .section-body -->
+        </section>
+      </div><!--end #content-->
+      <!-- END CONTENT -->
+
+      <!-- BEGIN MENUBAR-->
+        <?php
+              include('/../bars/'.$view_skin->roledesc.'/sidebar.phtml');
+        ?>
+      <!-- END MENUBAR -->
+
+      <!-- BEGIN OFFCANVAS RIGHT -->
+
+      <!-- END OFFCANVAS RIGHT -->
+  
+    </div><!--end #base-->
+    <!-- END BASE -->
+<script type="text/javascript">var count = <?php echo $view_contactQtd?></script>
+

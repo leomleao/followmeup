@@ -1,0 +1,54 @@
+<body class="menubar-hoverable header-fixed ">
+	
+	<!-- BEGIN LOGIN SECTION -->
+	<section class="section-account">
+		<div class="img-backdrop" style="background-image: url('<?php echo IMG?>wago_backdrop.jpg')"></div>
+		<div class="spacer"></div>
+		<div class="card contain-sm style-transparent">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-sm-6">
+						<btn-raised/>
+						<span class="text-lg text-bold text-primary">Cadastro WAGO</span>
+						<br/><br/>
+						<form class="form floating-label" action="<?php echo BASE?>login/logar" accept-charset="utf-8" method="post">
+							<div class="form-group">
+								<input type="text" class="form-control" id="userUser" name="userUser" value="<?php echo $this->request->post('userUser') ?>">
+								<label for="userUser">Usuario</label>
+								<span class="help-block red" id="userError"></span>
+							</div>
+							<div class="form-group">
+								<input type="password" class="form-control" id="userPassword" name="userPassword" value="<?php echo $this->request->post('userPassword') ?>">
+								<label for="userPassword">Senha</label>
+								<span class="help-block red" id="passwordError"></span>
+								<p class="help-block"><a href="recuperar">Esqueceu sua senha?</a></p>
+								
+							</div>
+							<br/>
+							<div class="row">
+								<div class="col-xs-6 text-left">
+									<div class="checkbox checkbox-inline checkbox-styled">
+                                   			<label>
+											<input type="checkbox"> <span>Lembrar</span>
+										</label>
+									</div>
+								</div><!--end .col -->
+								<div class="col-xs-6 text-right">
+                                     <input name="submit" type="submit" value="Entrar" class="btn btn-primary btn-raised" id="entrar">
+								</div><!--end .col -->
+							</div><!--end .row -->
+						</form>
+					</div><!--end .col -->
+					<div class="col-sm-5 col-sm-offset-1 text-center">
+						<br><br><br><br>
+						<h3 class="text-light">
+							Sem acesso?
+						</h3>
+						<a class="btn btn-block btn-raised btn-primary" href="<?php echo BASE?>register">cadastrar</a> 
+						<br><br>
+						<?php echo (isset($this->alert) ? $this->alert : ''); ?>
+					</div><!--end .col -->
+				</div><!--end .row -->
+			</div><!--end .card-body -->
+		</div><!--end .card -->
+	</section>

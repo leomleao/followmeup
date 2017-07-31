@@ -1,0 +1,1 @@
+{"version":3,"sources":["error.css"],"names":[],"mappings":"AAAA,KACC,mBACA,UAAO,CAER,oBACC,oBAAc,CAEf,gCACC,kBAAY,CAAA","file":"error.min.css","sourcesContent":["body{background:#FFAEAD;color:#fff}.panel.panel-custom{border-color:#A94442}.panel.panel-custom .panel-body{background:#A94442}"],"sourceRoot":"/source/"}

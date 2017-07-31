@@ -1,0 +1,131 @@
+<header id="header" >
+
+			<div class="headerbar">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="headerbar-left">
+					<ul class="header-nav header-nav-options">
+						<li class="header-nav-brand" >
+							<div class="brand-holder">
+								<a href="<?php echo BASE; ?>Home">
+									<span class="text-lg text-bold text-primary"><img src="<?php echo IMG?>WAGO_LOGO.png" alt="" /></span>
+								</a>
+
+							</div>
+						</li>
+						<li>
+							<a class="btn btn-icon-toggle menubar-toggle" data-toggle="menubar" href="javascript:void(0);">
+								<i class="fa fa-bars"></i>
+							</a>
+						</li>
+					</ul>
+
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="headerbar-right">
+					<ul class="header-nav header-nav-options">
+
+						<div class="text container">
+						  <p>WAGO:</p>
+						  <p>
+						    <span class="word wisteria">Follow-UP</span>
+						    <span class="word belize">Já Fez o Follow-up De Suas Atividades?</span>
+						    <span class="word pomegranate">Follow-up Em Dia é Meta Batida ;-)</span>
+						    <span class="word green">Estamos De Olho Em Você.</span>
+						  </p>
+						</div>
+					
+					</ul><!--end .header-nav-options -->
+					<ul class="header-nav header-nav-profile">
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle ink-reaction" data-toggle="dropdown">
+
+								<img src="<?php echo IMG.'employee/'.$_SESSION["hxphp_storage_session"]["userUser"];?>.jpg" alt="" />
+								<span class="profile-info">
+									<?php echo $_SESSION["hxphp_storage_session"]["userName"]?>
+									<small><?php echo $_SESSION["hxphp_storage_session"]["userDepartment"]?></small>
+								</span>
+							</a>
+							<ul class="dropdown-menu animation-dock">
+								<li class="dropdown-header">Config</li>
+								<li><a href="../../html/pages/profile.html">My profile</a></li>
+								<li><a href="../../html/pages/blog/post.html">My blog <span class="badge style-danger pull-right">16</span></a></li>
+								<li><a id="addNewUser"><i class="md md-account-circle"></i> Adicionar usuário</a></li>
+								<li class="divider"></li>
+								<li><a href="../../html/pages/locked.html"><i class="fa fa-fw fa-lock"></i> Lock</a></li>
+								<li><a href="<?php echo BASE?>Home/deslogar"><i class="fa fa-fw fa-power-off text-danger"></i> Sair</a></li>
+							</ul><!--end .dropdown-menu -->
+						</li><!--end .dropdown -->
+					</ul><!--end .header-nav-profile -->
+				</div><!--end #header-navbar-collapse -->
+			 <!-- MODAL START -->
+            <div id="addUser" class="row modal fade">
+              <!-- BEGIN ADD CONTACTS FORM -->
+              <div class="col-md-6 addUser container">
+                <div class="card">
+                  <div class="card-head style-primary">
+                    <header>Adicionar novo Usuário</header>
+                  </div>
+		           <div class="card contain-sm style-transparent">
+					<div class="card-body">
+                  			<form class="form" action="<?php echo BASE; ?>register/register" accept-charset="utf-8" method="post">
+                  			<div class="col-md-6">
+							<div class="form-group">
+								<input required type="text" class="form-control" id="userName" name="userName" value="<?php echo $this->request->post('userName') ?>">
+								<label for="userName">Nome</label>
+								<p class="help-block">Nome e Sobrenome</p>
+							</div>
+							</div>
+							<div class="col-md-6">
+							<div class="form-group">
+								<input required type="text" class="form-control" id="userUser" name="userUser" value="<?php echo $this->request->post('userUser') ?>">
+								<label for="userUser">Usuario</label>
+								<p class="help-block">u22XXXX</p>
+							</div>
+							</div>
+							<div class="col-md-6">
+							<div class="form-group">
+								<input required type="text" class="form-control" id="userEmail" name="userEmail" value="<?php echo $this->request->post('userEmail')?>">
+								<label for="userEmail">E-mail</label>
+								<p class="help-block">nome.sobrenome@wago.com</p>
+							</div>
+							</div>
+							<div class="col-md-6">
+							<div class="form-group">
+								<input required type="text" class="form-control" id="userEmail" name="userEmail" value="<?php echo $this->request->post('userEmail')?>">
+								<label for="userEmail">Tipo de usuário</label>
+							</div>
+							</div>
+							<div class="row">
+							<div class="col-md-3">
+							<div class="form-group">
+							  <div class="form-group">
+								<label for="previewImage">Foto Perfil</label>
+								<div class="border-gray height-4 width-4" id="previewImage">
+									<img src="" width="158px" height="159px" id="preview" class="fancybox">
+								</div>
+							  </div>
+							 </div>
+							</div><!--end .col -->
+
+							</div>
+                    <div class="card-actionbar">
+                      <div class="card-actionbar-row">
+							<span class="btn btn-default btn-file">	Foto Perfil 
+								<input type="file" name="picture" id="picture" class="">
+							</span>
+
+
+                                     <input required name="submit" type="submit" value="Cadastrar" class="btn btn-primary btn-raised">
+
+
+							</div>
+					</div>
+					</form>
+					</div><!--end .card contain-sm style-transparent-->
+				</div><!--end .card-body -->
+               </div><!--end .card -->
+              </div><!--end .col -->
+              <!-- END ADD CONTACTS FORM -->
+            </div><!--end .row -->
+          <!-- MODAL END-->
+	</header>

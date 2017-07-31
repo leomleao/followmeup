@@ -1,0 +1,48 @@
+<body class="menubar-hoverable header-fixed ">
+	
+	<!-- BEGIN LOGIN SECTION -->
+	<section class="section-account">
+		<div class="img-backdrop" style="background-image: url('<?php echo IMG?>wago_backdrop.jpg')"></div>
+		<div class="spacer"></div>
+		<div class="card contain-sm style-transparent">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-sm-6">
+						<btn-raised/>
+						<span class="text-lg text-bold text-primary">Novo Usuário</span>
+						<br/><br/>
+						<form class="form floating-label" action="<?php echo BASE; ?>register/register" accept-charset="utf-8" method="post">
+							<div class="form-group">
+								<input required type="text" class="form-control" id="userName" name="userName" value="<?php echo $this->request->post('userName') ?>">
+								<label for="Usuario">Nome</label>
+							</div>
+							<div class="form-group">
+								<input required type="text" class="form-control" id="userUser" name="userUser" value="<?php echo $this->request->post('userUser') ?>">
+								<label for="Usuario">Usuario</label>
+							</div>
+							<div class="form-group">
+								<input required type="mail" class="form-control" id="userEmail" name="userEmail" value="<?php echo $this->request->post('userEmail') ?>">
+								<label for="Usuario">E-mail</label>
+							</div>
+							<div class="form-group">
+								<input required type="password" class="form-control" id="userPassword" name="userPassword" value="<?php echo $this->request->post('userPassword') ?>">
+								<label for="password">Senha</label>
+ 							</div>
+							<br/>
+							<div class="row">
+								<div class="col-xs-6 text-right">
+                                     <input required name="submit" type="submit" value="Cadastrar" class="btn btn-primary btn-raised">
+								</div><!--end .col -->
+							</div><!--end .row -->
+						</form>
+					</div><!--end .col -->
+					<div class="col-sm-5 col-sm-offset-1 text-center">
+						<br><br><br><br>
+						<a class="btn btn-block btn-raised btn-primary" href="<?php echo BASE?>login">Voltar para pagina de login</a> 
+						<br><br>
+						   <?php echo (isset($this->alert) ? $this->alert : ''); ?>
+ 					</div><!--end .col -->
+				</div><!--end .row -->
+			</div><!--end .card-body -->
+		</div><!--end .card -->
+	</section>
